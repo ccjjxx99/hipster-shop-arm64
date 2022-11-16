@@ -5,6 +5,8 @@ WORKDIR /go/src/$PROJECT
 
 # restore dependencies
 COPY . .
+RUN go env -w GO111MODULE=on
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 RUN go install .
 
 FROM alpine as release
