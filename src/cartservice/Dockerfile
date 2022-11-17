@@ -16,16 +16,19 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim as builder
 WORKDIR /app
 
+COPY NuGet.Config ~/.nuget/NuGet/
+
 COPY cartservice.csproj .
 
-RUN dotnet restore cartservice.csproj -r linux-musl-x64
+
+RUN dotnet restore cartservice.csproj -r linux-arm64
 
 COPY . .
 # can't use single-file mode
-RUN dotnet publish cartservice.csproj -r linux-musl-x64 --self-contained true -p:PublishTrimmed=True -p:TrimMode=Link -c release -o /cartservice --no-restore
+RUN dotnet publish cartservice.csproj -r linux-arm64 --self-contained true -p:PublishTrimmed=True -p:TrimMode=Link -c release -o /cartservice --no-restore
 
 # https://mcr.microsoft.com/v2/dotnet/runtime-deps/tags/list
-FROM mcr.microsoft.com/dotnet/runtime-deps:5.0.1-alpine3.12-arm64
+FROM mcr.microsoft.com/dotnet/runtime-deps:5.0.1-alpine3.12-arm64v8
 RUN GRPC_HEALTH_PROBE_VERSION=v0.3.6 && \
     wget -qO/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-arm64 && \
     chmod +x /bin/grpc_health_probe
