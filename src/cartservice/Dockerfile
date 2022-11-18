@@ -16,14 +16,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim as builder
 WORKDIR /app
 
-COPY NuGet.Config ~/.nuget/NuGet/
-
 COPY cartservice.csproj .
 
-
+COPY NuGet.Config ~/.nuget/NuGet/
 RUN dotnet restore cartservice.csproj -r linux-arm64
 
 COPY . .
+COPY NuGet.Config ~/.nuget/NuGet/
 # can't use single-file mode
 RUN dotnet publish cartservice.csproj -r linux-arm64 --self-contained true -p:PublishTrimmed=True -p:TrimMode=Link -c release -o /cartservice --no-restore
 

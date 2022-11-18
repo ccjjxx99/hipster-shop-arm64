@@ -14,9 +14,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm config set registry https://registry.npm.taobao.org
-
-RUN npm install --only=production
+RUN npm config set registry https://registry.npm.taobao.org && npm install --only=production
 
 FROM base
 

@@ -4,10 +4,8 @@ ENV PROJECT github.com/lightstep/hipster-shop/src/productcatalogservice
 WORKDIR /go/src/$PROJECT
 
 COPY . .
-RUN go env -w GO111MODULE=on
-RUN go env -w GOPROXY=https://goproxy.cn,direct
-RUN go get -d -v
-RUN go build -o /productcatalogservice .
+RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && go get -d -v
+RUN go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct && go build -o /productcatalogservice .
 
 FROM alpine AS release
 RUN apk add --no-cache ca-certificates
