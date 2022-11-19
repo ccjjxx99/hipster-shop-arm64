@@ -1,6 +1,6 @@
 FROM python:3.7-slim as base
 
-RUN apt-get -qq update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     g++ git \
     && rm -rf /var/lib/apt/lists/*
@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1
 # Enable Profiler
 ENV ENABLE_PROFILER=1
 
-RUN apt-get -qq update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     wget
 

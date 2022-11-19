@@ -1,6 +1,6 @@
 FROM python:3.7-slim
-RUN apt-get update -qqy && \
-	apt-get -qqy install wget g++ git && \
+RUN apt-get update -y && \
+	apt-get -y install wget g++ git && \
 	rm -rf /var/lib/apt/lists/*
 # show python logs as they occur
 ENV PYTHONUNBUFFERED=0
