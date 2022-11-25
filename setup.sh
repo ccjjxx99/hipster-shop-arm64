@@ -29,7 +29,7 @@ run_skaffold () {
   echo Running skaffold to build and deploy the application
   echo If this is you\'re first time building, it could take around ~20 minutes.
   echo Time to grab some coffee!
-  skaffold run --default-repo=$(GCP_PROJECT_ID)
+  make run
 }
 
 # Success
@@ -103,7 +103,7 @@ minikube_steps () {
   kube_node_check #TODO better error handling
   set_ls_credentials
   run_skaffold
-  wait_for_store
+  # wait_for_store
   success_message
  fi
 }
