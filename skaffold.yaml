@@ -21,34 +21,34 @@ build:
     # must provide a "default repo" using one of the methods described
     # here:
     # https://skaffold.dev/docs/concepts/#image-repository-handling
-    - image: hipster-adservice
+    - image: adservice
       context: src/adservice
-    - image: hipster-emailservice
+    - image: emailservice
       context: src/emailservice
-    - image: hipster-productcatalogservice
+    - image: productcatalogservice
       context: src/productcatalogservice
-    - image: hipster-recommendationservice
+    - image: recommendationservice
       context: src/recommendationservice
-    - image: hipster-shippingservice
+    - image: shippingservice
       context: src/shippingservice
-    - image: hipster-checkoutservice
+    - image: checkoutservice
       context: src/checkoutservice
-    - image: hipster-paymentservice
+    - image: paymentservice
       context: src/paymentservice
-    - image: hipster-currencyservice
+    - image: currencyservice
       context: src/currencyservice
-    - image: hipster-cartservice
+    - image: cartservice
       context: src/cartservice
-    - image: hipster-frontend
+    - image: frontend
       context: src/frontend
-    - image: hipster-loadgenerator
+    - image: loadgenerator
       context: src/loadgenerator
-  # tagPolicy:
-  #   gitCommit: {}
-# deploy:
-#   kubectl:
-#     manifests:
-#       - ./kubernetes-manifests/**.yaml
+  tagPolicy:
+    gitCommit: {}
+deploy:
+  kubectl:
+    manifests:
+      - ./kubernetes-manifests/**.yaml
     # Uncomment below to run lightstep satellite with prometheus
     # - ./kubernetes-manifests/satellite/**.yaml
 profiles:
