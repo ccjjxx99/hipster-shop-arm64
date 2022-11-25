@@ -1,6 +1,6 @@
 .PHONY: run setup clean
 run:
-	skaffold run --default-repo=ccjjxx99
+	skaffold run --default-repo=$(GCP_PROJECT_ID)
 
 setup: 
 	@./setup.sh
