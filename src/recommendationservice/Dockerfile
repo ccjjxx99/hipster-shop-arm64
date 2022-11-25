@@ -15,8 +15,8 @@ RUN GRPC_HEALTH_PROBE_VERSION=v0.3.6 && \
 # get packages
 WORKDIR /recommendationservice
 COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-RUN pip install opentelemetry-launcher
+RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+RUN pip install opentelemetry-launcher -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 
 # add files into working directory
 COPY . .

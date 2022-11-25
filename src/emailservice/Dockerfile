@@ -26,8 +26,8 @@ RUN GRPC_HEALTH_PROBE_VERSION=v0.3.6 && \
 WORKDIR /email_server
 # get packages
 COPY requirements.txt .
-RUN pip install -r requirements.txt
-RUN pip install opentelemetry-launcher
+RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+RUN pip install opentelemetry-launcher -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 
 # Add the application
 COPY . .
