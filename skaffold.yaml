@@ -48,7 +48,8 @@ build:
       template: "{{.TAG_VERSION}}"
 deploy:
   kubectl:
-    manifests:
+    defaultNamespace: hipster
+    remoteManifests:
       - ./kubernetes-manifests/**.yaml
     # Uncomment below to run lightstep satellite with prometheus
     # - ./kubernetes-manifests/satellite/**.yaml
