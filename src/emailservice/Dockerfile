@@ -1,6 +1,7 @@
 FROM python:3.7-slim as base
 
-RUN apt-get update \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    && apt-get -y update \
     && apt-get install -y --no-install-recommends \
     g++ git \
     && rm -rf /var/lib/apt/lists/*
@@ -10,7 +11,8 @@ ENV PYTHONUNBUFFERED=1
 # Enable Profiler
 ENV ENABLE_PROFILER=1
 
-RUN apt-get update \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    && apt-get -y update \
     && apt-get install -y --no-install-recommends \
     wget
 
