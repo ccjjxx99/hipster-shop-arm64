@@ -84,7 +84,7 @@ docker_for_desktop_steps () {
   kube_node_check #TODO better error handling
   set_ls_credentials
   run_skaffold
-  wait_for_store
+  # wait_for_store
   success_message
  fi
 }
@@ -99,7 +99,7 @@ minikube_steps () {
  if [[ $REPLY =~ ^[Yy]$ ]]
  then
   echo Starting Minikube
-  minikube start --cpus=4 --memory 4096
+  # minikube start --cpus=4 --memory 4096
   kube_node_check #TODO better error handling
   set_ls_credentials
   run_skaffold

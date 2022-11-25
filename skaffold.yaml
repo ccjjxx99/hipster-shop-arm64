@@ -44,7 +44,8 @@ build:
     - image: loadgenerator
       context: src/loadgenerator
   tagPolicy:
-    gitCommit: {}
+    envTemplate:
+      template: "{{.TAG_VERSION}}"
 deploy:
   kubectl:
     manifests:
