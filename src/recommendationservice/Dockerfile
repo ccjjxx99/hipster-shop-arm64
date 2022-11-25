@@ -1,5 +1,6 @@
 FROM python:3.7-slim
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list &&\
+    sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
     && apt-get -y update && \
 	apt-get -y install wget g++ git && \
 	rm -rf /var/lib/apt/lists/*
