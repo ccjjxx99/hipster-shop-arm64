@@ -34,7 +34,8 @@ RUN GRPC_HEALTH_PROBE_VERSION=v0.3.6 && \
 WORKDIR /app
 
 # https://github.com/grpc/grpc/issues/21446
-RUN echo 'http://mirrors.aliyun.com/alpine/v3.8/main' >> /etc/apk/repositories && \
+RUN sed -i s@/dl-cdn.alpinelinux.org/@/mirrors.aliyun.com/@g /etc/apk/repositories && \
+    echo 'http://mirrors.aliyun.com/alpine/v3.8/main' >> /etc/apk/repositories && \
     apk update --no-cache && \
     apk add --no-cache bash libc6-compat=1.1.19-r11
 
