@@ -85,9 +85,13 @@ requires:
 - configs:
   - app
 build:
+  platforms: ["linux/arm64"]
   artifacts:
   - image: loadgenerator
     context: src/loadgenerator
+  tagPolicy:
+    envTemplate:
+      template: "{{.TAG_VERSION}}"
 manifests:
   rawYaml:
   - ./kubernetes-manifests/loadgenerator.yaml
