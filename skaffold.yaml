@@ -46,11 +46,12 @@ build:
   tagPolicy:
     envTemplate:
       template: "{{.TAG_VERSION}}"
+manifests:
+  kustomize:
+    paths:
+    - kubernetes-manifests
 deploy:
-  kubectl:
-    defaultNamespace: hipster
-    remoteManifests:
-      - ./kubernetes-manifests/**.yaml
+  kubectl: {}
     # Uncomment below to run lightstep satellite with prometheus
     # - ./kubernetes-manifests/satellite/**.yaml
 profiles:
@@ -74,3 +75,20 @@ profiles:
   #       diskSizeGb: 300
   #       machineType: N1_HIGHCPU_32
   #       timeout: 4000s
+---
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: loadgenerator
+requires:
+- configs:
+  - app
+build:
+  artifacts:
+  - image: loadgenerator
+    context: src/loadgenerator
+manifests:
+  rawYaml:
+  - ./kubernetes-manifests/loadgenerator.yaml
+deploy:
+  kubectl: {}
